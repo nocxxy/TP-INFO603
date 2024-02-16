@@ -1,13 +1,19 @@
 public class Cube {
 
+    //Constructeur
     public Cube(String couleur, TailleCube taille) {
         this.couleur = couleur;
         this.taille = taille;
     }
 
+
+    // ATTRIBUTs
     private TailleCube taille;
+    private String couleur;
+    private Cube dessous;
 
 
+    // GETTER/SETTER
 
     public TailleCube getTaille() {
         return this.taille;
@@ -17,10 +23,6 @@ public class Cube {
         this.taille = value;
     }
 
-
-
-    private String couleur;
-
     public String getCouleur() {
         return this.couleur;
     }
@@ -29,14 +31,15 @@ public class Cube {
         this.couleur = value;
     }
 
-    private Cube dessous;
-
     public Cube getDessous() {
         return dessous;
     }
 
+
+    // Methodes
+
+    // Methodes permettant de mettre le cube sur un cube
     public boolean poserSurCube(Cube c) {
-        System.out.println("Hello");
         this.dessous = c;
         return true;
     }
@@ -47,12 +50,14 @@ public class Cube {
         return (t.equals(this.taille))||(t.equals(TailleCube.grand)) ||(t.equals(TailleCube.moyen)&&(this.taille.equals(TailleCube.petit)));
     }
 
+    //on enleve le cubede la pile
     public boolean enleverCube() {
         this.dessous = null;
         return true;
     }
 
 
+    //Methode permettant de regarder si le cube correspond à la couleur et la taille
     public boolean correspond( String couleur,  TailleCube taille) {
         if(this.couleur.equals(couleur) && this.taille.equals(taille)){
             return true;
@@ -61,7 +66,7 @@ public class Cube {
         }
 
     }
-
+    //Methode permettant de regarder si le cube correspond à la couleur
     public boolean correspond( String couleur) {
         if(this.couleur.equals(couleur)){
             return true;
@@ -69,10 +74,5 @@ public class Cube {
             return false;
         }
 
-    }
-
-    @Override
-    public String toString() {
-        return "Cube("+this.couleur+","+this.taille+")";
     }
 }

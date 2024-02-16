@@ -1,4 +1,5 @@
 public enum TailleCube {
+    vide,
     petit,
     moyen,
     grand;
@@ -7,6 +8,6 @@ public enum TailleCube {
         for (TailleCube t:TailleCube.values())
             if (t.name().equalsIgnoreCase(taille))
                 return t;
-        return TailleCube.grand;
+        return TailleCube.vide;// Cas pour voir quand la taille d'un cube n'as pas été signalé
     }
 }
