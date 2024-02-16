@@ -1,8 +1,8 @@
 public class Robot {
 
-    public Table table;
+    private Table table;
 
-    public Cube cube;
+    private Cube cube;
 
 
     public Robot(Table t){
@@ -41,24 +41,46 @@ public class Robot {
 
 
     public boolean poserSurCube( String couleur,  TailleCube taille) {
-        // TODO -----------------------------
-        return true;
+        if(!this.estVidePince()){
+            Boolean res = this.table.poserSurCube(couleur,taille,this.cube);
+            if (res){
+                this.resetPince();
+            }
+            return res;
+        }else{
+            return false;
+        }
+
+    }
+
+    public boolean poserSurCube( String couleur) {
+        if(!this.estVidePince()){
+            return this.table.poserSurCube(couleur,this.cube);
+        }else{
+            return false;
+        }
+
     }
 
 
     public void prendreCube( String couleur,  TailleCube taille) {
-        // TODO -----------------------------
+        if(this.estVidePince()){
+            Cube c = this.table.prendreCube(couleur,taille);
+            if(c!=null){
+                this.cubeTenue(c);
+            }
+        }
     }
 
     public void supprimeCube() {
+        if(!this.estVidePince())
         this.resetPince();
     }
 
     public void afficherRobot() {
-        System.out.println("ROBOT :");
-        if(!this.estVidePince()){
-            System.out.println(this.cube.toString());
+        Monde.ecrire(Monde.noir, "Etat du Robot : ");
+        if(cube!=null){
+            Monde.ecrire(Monde.couleur(cube.getCouleur()), "Cube " + cube.getTaille());
         }
-
     }
 }

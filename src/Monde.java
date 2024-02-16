@@ -16,9 +16,36 @@ public class Monde {
 
     public Robot robot;
     public static void ecrire(int coul, String s) {
-        System.out.printf("\033[%d;1m%s\033[0m\n", coul+31, s);
+        System.out.printf("\033[%d;1m%s\033[0m\n", coul, s);
     }
 
+    public static void ecrireEnUneLigne(int coul, String s) {
+        System.out.printf("\033[%d;1m%s\033[0m", coul, s);
+    }
+
+
+    public static final int couleur(String coul){
+        switch (coul) {
+            case "rouge":
+                return rouge;
+            case "vert":
+                return vert;
+            case "jaune":
+                return jaune;
+            case "bleu":
+                return bleu;
+            case "violet":
+                return violet;
+            case "cyan":
+                return cyan;
+            case "gris":
+                return gris;
+            //case "noir":
+            //    return noir;
+            default:
+                return noir;
+        }
+    }
     public static void main(String[] args) {
 //		Couleur.testCouleur();
         Table tab = new Table();
@@ -39,6 +66,7 @@ public class Monde {
                 case '1':
                     System.out.print("Couleur du cube : ");
                     coul = Keyboard.getString();
+                    if (coul.equals("")) coul = "rouge";
 //			ecrire (coul, "couleur saisie");
                     System.out.print("Taille (grand/moyen/petit) : ");
                     tc = TailleCube.getTaille(Keyboard.getString());
@@ -50,14 +78,30 @@ public class Monde {
                     D2R2.supprimeCube();
                     break;
                 case '3':
-                    System.out.println("Quel CUbe voulez vous prendre ?");
+                    System.out.println("Quel Cube voulez vous prendre ?");
 //			Keyboard.pause();
-                    // TODO------------------------
+                    System.out.print("Couleur du cube : ");
+                    coul = Keyboard.getString();
+//			ecrire (coul, "couleur saisie");
+                    System.out.print("Taille (grand/moyen/petit) : ");
+                    tc = TailleCube.getTaille(Keyboard.getString());
+//			Keyboard.pause();
+                    D2R2.prendreCube(coul,tc);
                     break;
                 case '4':
                     System.out.println("Le Cube a été poser sur la table");
 //			Keyboard.pause();
                     D2R2.poserCubeSurTable();
+                    break;
+                case '5':
+                    System.out.println("Sur quel Cube voulez-vous posez ?");
+                    System.out.print("Couleur du cube : ");
+                    coul = Keyboard.getString();
+//			ecrire (coul, "couleur saisie");
+                    System.out.print("Taille (grand/moyen/petit) : ");
+                    tc = TailleCube.getTaille(Keyboard.getString());
+//			Keyboard.pause();
+                    D2R2.poserSurCube(coul,tc);
                     break;
             }
             afficherMonde(D2R2, tab);
@@ -66,6 +110,7 @@ public class Monde {
 
     private static void afficherMonde(Robot R, Table T) {
         ecrire(noir, "Etat du monde : ");
+        ecrire(noir, "--------------------------------------------------");
         R.afficherRobot();
         T.afficherTable();
 //		Keyboard.pause();

@@ -29,20 +29,25 @@ public class Cube {
         this.couleur = value;
     }
 
-    public Cube dessous;
+    private Cube dessous;
 
-    public boolean poserSurCube( Cube c) {
+    public Cube getDessous() {
+        return dessous;
+    }
+
+    public boolean poserSurCube(Cube c) {
+        System.out.println("Hello");
         this.dessous = c;
         return true;
     }
 
-
+    //Regarde si le cube peut etre poser sur le cube c
     public boolean estPossibleDePoserSur( Cube c) {
-        // TODO -----------------------------
-        return true;
+        TailleCube t = c.getTaille();
+        return (t.equals(this.taille))||(t.equals(TailleCube.grand)) ||(t.equals(TailleCube.moyen)&&(this.taille.equals(TailleCube.petit)));
     }
 
-    public boolean EnleverCube() {
+    public boolean enleverCube() {
         this.dessous = null;
         return true;
     }
@@ -50,6 +55,15 @@ public class Cube {
 
     public boolean correspond( String couleur,  TailleCube taille) {
         if(this.couleur.equals(couleur) && this.taille.equals(taille)){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public boolean correspond( String couleur) {
+        if(this.couleur.equals(couleur)){
             return true;
         }else{
             return false;
