@@ -59,20 +59,10 @@ public class Cube {
 
     //Methode permettant de regarder si le cube correspond à la couleur et la taille
     public boolean correspond( String couleur,  TailleCube taille) {
-        if(this.couleur.equals(couleur) && this.taille.equals(taille)){
-            return true;
-        }else{
-            return false;
-        }
-
+        return this.couleur.equals(couleur) && this.taille.equals(taille);
     }
     //Methode permettant de regarder si le cube correspond à la couleur
     public boolean correspond( String couleur) {
-        if(this.couleur.equals(couleur)){
-            return true;
-        }else{
-            return false;
-        }
-
+        return this.couleur.equals(couleur);
     }
 }
